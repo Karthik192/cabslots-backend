@@ -60,7 +60,7 @@ wss.on("connection", function connection(ws) {
     }
   };
 
-  setInterval(() => {
+  var intervalId = setInterval(() => {
     console.log("Updating the data...");
     const newData = [
       {
@@ -108,6 +108,7 @@ wss.on("connection", function connection(ws) {
   }, 10000); // refresh every 10 seconds
 
   ws.on("close", () => {
+    clearInterval(intervalId);
     console.log("connection closed!!!");
   });
 });
